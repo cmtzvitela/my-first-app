@@ -1,6 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 
+
+//Components
+import Greeting from './components/Greeting';
+import FullName from './components/FullName';
+import Calculator from './components/Calculator';
+
 function App() {
   return (
     <div className="App">
@@ -17,6 +23,12 @@ function App() {
         >
           Learn React
         </a>
+        <Greeting name="Carlos"/>
+        <FullName firstName= "Carlos" lastName="Martinez"/>
+        <Calculator firstValue={5} secondValue= {3} operator = 'suma'/>
+        <Calculator firstValue={5} secondValue= {3} operator = 'resta'/>
+        <Calculator firstValue={5} secondValue= {3} operator = 'multiplicacion'/>
+        <Calculator firstValue={5} secondValue= {3} operator = 'perro'/>
       </header>
     </div>
   );

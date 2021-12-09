@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 const capitalizeWord = (word) => {
     if(!word) {
@@ -13,6 +13,7 @@ const capitalizeWord = (word) => {
 }
 
 function FullName ({firstName, lastName = ""}) {
+const [fakeName, setfakeName] = useState("David Moranchel")
 
     const _firstName = capitalizeWord(firstName)
     const _lastName = capitalizeWord(lastName)

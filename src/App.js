@@ -6,6 +6,8 @@ import './App.css';
 import Greeting from './components/Greeting';
 import FullName from './components/FullName';
 import Calculator from './components/Calculator';
+import Counter from './components/Counter';
+import NavBar from './components/NavBar';
 
 function App() {
   return (
@@ -23,12 +25,8 @@ function App() {
         >
           Learn React
         </a>
-        <Greeting name="Carlos"/>
-        <FullName firstName= "Carlos" lastName="Martinez"/>
-        <Calculator firstValue={5} secondValue= {3} operator = 'suma'/>
-        <Calculator firstValue={5} secondValue= {3} operator = 'resta'/>
-        <Calculator firstValue={5} secondValue= {3} operator = 'multiplicacion'/>
-        <Calculator firstValue={5} secondValue= {3} operator = 'perro'/>
+        <Counter/>
+        <NavBar/>
       </header>
     </div>
   );

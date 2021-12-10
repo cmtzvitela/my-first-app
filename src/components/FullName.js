@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
 const capitalizeWord = (word) => {
     if(!word) {
@@ -13,10 +13,23 @@ const capitalizeWord = (word) => {
 }
 
 function FullName ({firstName, lastName = ""}) {
-const [fakeName, setfakeName] = useState("David Moranchel")
+    console.log("Paso 1: Montaje")
+    const [fakeName, setfakeName] = useState("David Moranchel")
+    const [isLoading, setIsLoading] = useState(true);
+    
+    useEffect(() => {
+        console.log("Paso 3: Commit")
+        setIsLoading(false)
+    }, []);
+
+    useEffect(() => {
+        console.log("Paso 4: Commit de actualizacion")
+    });
+
 
     const _firstName = capitalizeWord(firstName)
     const _lastName = capitalizeWord(lastName)
+    console.log("Paso2: Renderizado")
     return (
         <div>
             <h1>

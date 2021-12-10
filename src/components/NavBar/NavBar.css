@@ -1,0 +1,15 @@
+ul {
+    list-style: none;
+}
+
+li {
+    font-weight: bold;
+}
+
+li:hover {
+    color: rgb(13, 47, 121);
+}
+
+.li-active{
+    color:bisque;
+}

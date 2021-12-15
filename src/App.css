@@ -36,3 +36,45 @@
     transform: rotate(360deg);
   }
 }
+
+.btn-next {
+  width: 120px;
+  height: 40px;
+  color: white;
+  font-weight: bold;
+  font-size: large;
+  background-color: rgb(71, 48, 114);
+  border: none;
+  border-radius: 5px;
+}
+
+.btn-next:hover {
+  opacity: 90%;
+  cursor: pointer;
+}
+
+.btn-prev {
+  width: 120px;
+  height: 40px;
+  color: white;
+  font-weight: bold;
+  font-size: large;
+  background-color: rgb(71, 48, 114);
+  border: none;
+  border-radius: 5px;
+}
+
+.btn-prev:hover {
+  opacity: 90%;
+  cursor: pointer;
+}
+
+.fixed-container{
+  width: 100vw;
+  height: 100px;
+  position: fixed;
+}
+
+.btn:disabled {
+  background-color: gray;
+}

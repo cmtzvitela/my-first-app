@@ -1,47 +1,95 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
 
 // Components
-import NavBar from "./components/NavBar";
-import UserName from "./components/UserName";
-import MortyCard from "./components/MortyCard";
+import Character from "./components/Character";
+
+// Services
+import { listCharacters } from "./services/characters";
 
 function App() {
-	const [users, setUsers] = useState([]);
+	const [characters, setCharacters] = useState([]);
+	const [data, setData] = useState({});
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		const getUsers = async () => {
-			const response = await fetch("users.json");
-			console.table(response);
-			const data = await response.json();
-			console.log(data);
-			setUsers(data);
+		const list = async () => {
+			const { results, info } = await listCharacters();
+			setCharacters(results);
+			setData(info);
+			setIsLoading(false)
 		};
-
-		getUsers();
+		list();
 	}, []);
 
-	const usersUI = users.map(({ id, firstName, lastName }) => (
-		<UserName key={id} firstName={firstName} lastName={lastName} />
-	));
+	const handleClick = async (action) => {
+		setIsLoading(true)
+		if (action === "next" && data.next != null) {
+			const page = data.next.split("?")[1];
+			const { results, info } = await listCharacters(page);
+			setCharacters(results);
+			setData(info);
+		} else if(action === "prev" && data.prev != null) {
+			const page = data.prev.split("?")[1];
+			const { results, info } = await listCharacters(page);
+			setCharacters(results);
+			setData(info);
+		} else if (data.next === null){
+			<button id="next" className="no-next"></button>
+		} else if(data.prev === null) {
+			<button id="prev" className="no-prev"></button>
+		}
+		setIsLoading(false)
+	};
+
+	const hasPrevLink = data.prev ? true:false;
+	const hasNextLink = data.next ? true:false;
 
 	return (
 		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<NavBar />
-        <MortyCard/>
-				{usersUI}
-			</header>
+			<div className="fixed-container">
+				{hasPrevLink ? (
+				<button disable={isLoading} id = "next" onClick={() => handleClick("prev")} className="btn-next">Prev</button>
+				):null}
+				{hasNextLink ? (
+				<button disable={isLoading} id = "prev" onClick={() => handleClick("next")} className="btn-prev">Next</button>
+				):null}
+			</div>
+			{characters.map(({ id, image, name, species, status }) => (
+				<Character
+					key={id}
+					image={image}
+					name={name}
+					species={species}
+					status={status}
+				/>
+			))}
 		</div>
 	);
 }
-
 export default App;
 
 
 
+
+
+// const [users, setUsers] = useState([]);
+
+// useEffect(() => {
+// 	const getUsers = async () => {
+// 		const response = await fetch("users.json");
+// 		console.table(response);
+// 		const data = await response.json();
+// 		console.log(data);
+// 		setUsers(data);
+// 	};
+
+// 	getUsers();
+// }, []);
+
+// const usersUI = users.map(({ id, firstName, lastName }) => (
+// 	<UserName key={id} firstName={firstName} lastName={lastName} />
+// ));
 
 
 

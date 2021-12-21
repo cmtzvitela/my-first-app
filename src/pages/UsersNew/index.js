@@ -43,7 +43,7 @@ export default function UsersNew() {
 	};
 
 	return (
-		<div className="container flex-col">
+		<div className="">
 			<h1>Crea un usuario</h1>
 			<form onSubmit={handleSubmit}>
 				<Input
